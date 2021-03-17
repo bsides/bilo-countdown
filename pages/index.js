@@ -35,7 +35,10 @@ export default function Home() {
 
       <main className="grid justify-center items-center h-screen space-y-20">
         <div className="grid justify-center items-center h-screen space-y-20">
-          <div className="md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl clock-container">
+          <div className="md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl clock-container relative">
+            <div className="md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-black text-center uppercase absolute -top-8 left-0 w-full">
+              Até o Bisso encontrar o Vilo
+            </div>
             {Object.entries(duration).map((d) => {
               if (d[0] === 'years' || d[0] === 'months') return null
               const digit = ('' + d[1]).length === 1 ? '0' + d[1] : d[1]
