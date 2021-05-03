@@ -21,10 +21,10 @@ export default function Home() {
   }
   const [duration, setDuration] = useState(tick())
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => setDuration(tick()), 1000)
-  //   return () => clearInterval(interval)
-  // }, [])
+  useEffect(() => {
+    const interval = setInterval(() => setDuration(tick()), 1000)
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <div className="">
@@ -79,7 +79,7 @@ export default function Home() {
                 </div>
               )
             })}
-            <div className="md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-black text-center uppercase absolute top-56 left-0 w-full">
+            <div className="md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-black text-center uppercase absolute top-60 left-0 w-full">
               22 de Maio de 2021
             </div>
           </div>
