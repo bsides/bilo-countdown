@@ -39,8 +39,8 @@ body {
   min-width: 90px;
   position: relative;
 }
-.clock-col:not(:last-child):before,
-.clock-col:not(:last-child):after {
+.clock-col:not(.clock-col-last):before,
+.clock-col:not(.clock-col-last):after {
   content: '';
   background-color: rgba(255, 255, 255, 0.3);
   height: 5px;
@@ -50,10 +50,10 @@ body {
   position: absolute;
   right: -42px;
 }
-.clock-col:not(:last-child):before {
+.clock-col:not(.clock-col-last):before {
   top: 35%;
 }
-.clock-col:not(:last-child):after {
+.clock-col:not(.clock-col-last):after {
   top: 50%;
 }
 .clock-timer:before {

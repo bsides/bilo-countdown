@@ -10,7 +10,7 @@ import ptBR from 'date-fns/locale/pt-BR'
 export default function Home() {
   function tick() {
     const start = new Date()
-    const end = new Date(Date.UTC(2021, 2, 21, 14 + 3, 40, 0))
+    const end = new Date(Date.UTC(2021, 4, 22, 14 + 3, 0, 0))
     const duration = dateFns.intervalToDuration({ start, end })
     const durationFormatted = dateFns.formatDuration(duration, {
       locale: ptBR,
@@ -21,10 +21,10 @@ export default function Home() {
   }
   const [duration, setDuration] = useState(tick())
 
-  useEffect(() => {
-    const interval = setInterval(() => setDuration(tick()), 1000)
-    return () => clearInterval(interval)
-  }, [])
+  // useEffect(() => {
+  //   const interval = setInterval(() => setDuration(tick()), 1000)
+  //   return () => clearInterval(interval)
+  // }, [])
 
   return (
     <div className="">
@@ -39,11 +39,17 @@ export default function Home() {
             <div className="md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-black text-center uppercase absolute -top-8 left-0 w-full">
               Até o Bisso encontrar o Vilo
             </div>
-            {Object.entries(duration).map((d) => {
+            {Object.entries(duration).map((d, index, arr) => {
+              console.log(d)
               if (d[0] === 'years' || d[0] === 'months') return null
               const digit = ('' + d[1]).length === 1 ? '0' + d[1] : d[1]
               return (
-                <div className="clock-col" key={JSON.stringify(d)}>
+                <div
+                  className={`clock-col${
+                    index === arr.length - 1 ? ' clock-col-last' : ''
+                  }`}
+                  key={JSON.stringify(d)}
+                >
                   <p
                     className={`text-white clock-timer ${
                       d[0] === 'days'
@@ -73,6 +79,9 @@ export default function Home() {
                 </div>
               )
             })}
+            <div className="md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-black text-center uppercase absolute top-56 left-0 w-full">
+              22 de Maio de 2021
+            </div>
           </div>
         </div>
       </main>
