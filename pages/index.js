@@ -7,19 +7,42 @@ import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import ptBR from 'date-fns/locale/pt-BR'
 
-export default function Home() {
-  function tick() {
-    const start = new Date()
-    const end = new Date(Date.UTC(2021, 4, 22, 14 + 3, 0, 0))
-    const duration = dateFns.intervalToDuration({ start, end })
-    const durationFormatted = dateFns.formatDuration(duration, {
-      locale: ptBR,
-      zero: true,
-      format: ['days', 'hours', 'minutes', 'seconds'],
-    })
-    return duration
+// Year, month (starting at 0), day, hour (GMT -3 needs +3), minute, secont
+const DATE_UNTIL_BILO = Date.UTC(2021, 10, 23, 16 + 3, 0, 0)
+
+function tick() {
+  const start = new Date()
+  const end = new Date(DATE_UNTIL_BILO)
+  const duration = dateFns.intervalToDuration({ start, end })
+  // This does nothing now
+  // const durationFormatted = dateFns.formatDuration(duration, {
+  //   locale: ptBR,
+  //   zero: true,
+  //   format: ['days', 'hours', 'minutes', 'seconds'],
+  // })
+  if (duration.months > 0) {
+    duration.days = duration.months * 30 + duration.days
   }
+  if (duration.years > 0) {
+    duration.days = duration.years * 365 + duration.days
+  }
+  return duration
+}
+
+export default function Home() {
   const [duration, setDuration] = useState(tick())
+  const biloDateFull = dateFns.intlFormat(
+    new Date(DATE_UNTIL_BILO),
+    {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    },
+    {
+      locale: 'pt-BR',
+    }
+  )
 
   useEffect(() => {
     const interval = setInterval(() => setDuration(tick()), 1000)
@@ -79,7 +102,7 @@ export default function Home() {
               )
             })}
             <div className="md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-black text-center uppercase absolute top-96 -mt-10 md:mt-0 md:top-60 left-0 w-full">
-              22 de Maio de 2021
+              {biloDateFull}
             </div>
           </div>
         </div>
