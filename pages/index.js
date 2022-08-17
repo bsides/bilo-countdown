@@ -8,7 +8,7 @@ import Head from 'next/head'
 import ptBR from 'date-fns/locale/pt-BR'
 
 // Year, month (starting at 0), day, hour (GMT -3 needs +3), minute, secont
-const DATE_UNTIL_BILO = Date.UTC(2022, 0, 13, 19 + 3, 55, 0)
+const DATE_UNTIL_BILO = Date.UTC(2022, 8, 7, 9 + 3, 40, 0)
 
 function tick() {
   const start = new Date()
